@@ -3,19 +3,31 @@ import { ref } from "vue";
 import { invoke } from "@tauri-apps/api/tauri";
 
 const greetMsg = ref("");
-const crypto_name = ref("");
+const newlines = ref("");
+const name = ref("");
 
-async function calculate_comp() {
+async function get_crypto() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    greetMsg.value = await invoke("calculate_comp", { crypto_name: crypto_name.value });
+    greetMsg.value = await invoke("get_crypto", { name: name.value });
+
+    // separates for new lines
+    let newlines = greetMsg.value.split(",").join("\n");
 }
 </script>
 
 <template>
     <div class="card">
-        <input id="greet-input" v-model="crypto_name" placeholder="Enter your name..." />
-        <button type="button" @click="calculate_comp()">Calculate</button>
+        <input id="greet-input" v-model="name" placeholder="Enter crypto name..." />
+        <button type="button" @click="get_crypto()">Calculate</button>
     </div>
 
-    <p>{{ greetMsg }}</p>
+    <p id="response">{{ greetMsg }}</p>
 </template>
+
+<style>
+#response {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff7474;
+}
+</style>

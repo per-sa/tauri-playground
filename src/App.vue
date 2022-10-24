@@ -2,6 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import Love from "./components/Love.vue";
+import Crypto from "./components/Crypto.vue";
 </script>
 
 <template>
@@ -14,9 +15,9 @@ import Love from "./components/Love.vue";
 
     </div>
 
-    <p>Check your love compatibility with your signifcant Oother.</p>
+    <p>Crypto Price Checker</p>
 
-    <Love />
+    <Crypto />
 
   </div>
 </template>
